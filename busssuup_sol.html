@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BUSSSUUP?</title>
+
+  <!-- Solana wallet and token metadata -->
+  <meta name="solana:wallet" content="FdEZJAwp82rzuKtRbaphfzYaESeFkW9naCRTTAYpuUDy">
+  <meta name="solana:domain" content="busssuup.sol">
+  <meta name="solana:token" content="5BiMzbwQ2NidPS8QVBwhWWPByPv4b5NHcUSCSVXNw58E">
+  <meta name="description" content="The official stealth meme terminal for $BUSS on Solana.">
+
+  <!--
+    Creator PGP Fingerprint:
+    AD1E 15C8 E2C5 11EE 10B3  CA55 25F6 B71A CC19 B4E2
+    Use this to verify authenticity or send encrypted messages.
+  -->
+
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    .terminal {
+      max-width: 800px;
+      margin: 0 auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .line {
+      opacity: 0;
+    }
+    .typed {
+      animation: type 0.05s steps(1, end) forwards;
+    }
+    @keyframes type {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .buy-button {
+      display: inline-block;
+      margin-top: 1.5em;
+      padding: 12px 20px;
+      font-size: 1rem;
+      background: linear-gradient(90deg, #00ffcc, #aa00ff, #00ff00);
+      color: black;
+      text-decoration: none;
+      border-radius: 5px;
+      animation: pulse 2s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #00ffcc; }
+      50% { box-shadow: 0 0 20px #aa00ff; }
+      100% { box-shadow: 0 0 10px #00ffcc; }
+    }
+    a.solscan-link {
+      color: #00ffff;
+      text-decoration: underline;
+      display: block;
+      margin-top: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal" id="terminal">
+    <!-- Terminal output injected by JavaScript -->
+  </div>
+
+  <script>
+    const walletAddress = "FdEZJAwp82rzuKtRbaphfzYaESeFkW9naCRTTAYpuUDy";
+    const tokenAddress = "5BiMzbwQ2NidPS8QVBwhWWPByPv4b5NHcUSCSVXNw58E";
+
+    const lines = [
+      '> Initializing Meadow_AI protocol...',
+      '> Supply: 1.333333333 circulating 💥',
+      '> Treasury wallet: busssuup.sol',
+      '> Token mint: $BUSS (SPL)',
+      '> dev.sig: AD1E15C8E2C511EE10B3CA5525F6B71ACC19B4E2',
+      '> Zero roadmap. Infinite chaos.',
+      '> Stealth deployed. Decentralized forever.',
+      '',
+      '> Buy or be left behind:'
+    ];
+
+    const terminal = document.getElementById('terminal');
+
+    function addLine(text, delay) {
+      setTimeout(() => {
+        const line = document.createElement('div');
+        line.classList.add('line', 'typed');
+        line.textContent = text;
+        terminal.appendChild(line);
+      }, delay);
+    }
+
+    lines.forEach((line, i) => {
+      addLine(line, i * 800);
+    });
+
+    setTimeout(() => {
+      const btn = document.createElement('a');
+      btn.href = `https://jup.ag/swap/SOL-${tokenAddress}`;
+      btn.className = 'buy-button';
+      btn.target = '_blank';
+      btn.textContent = 'BUY ON JUP';
+
+      const walletLink = document.createElement('a');
+      walletLink.href = `https://solscan.io/account/${walletAddress}`;
+      walletLink.target = '_blank';
+      walletLink.className = 'solscan-link';
+      walletLink.innerText = 'View Wallet on Solscan';
+
+      const tokenLink = document.createElement('a');
+      tokenLink.href = `https://solscan.io/token/${tokenAddress}`;
+      tokenLink.target = '_blank';
+      tokenLink.className = 'solscan-link';
+      tokenLink.innerText = 'View Token on Solscan';
+
+      terminal.appendChild(document.createElement('br'));
+      terminal.appendChild(btn);
+      terminal.appendChild(walletLink);
+      terminal.appendChild(tokenLink);
+    }, lines.length * 800 + 200);
+  </script>
+</body>
+</html>
